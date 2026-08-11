@@ -39,5 +39,7 @@ func (p *Wrap) Panicf(template string, args ...interface{}) {
 }
 
 func (p *Wrap) With(args ...interface{}) *Wrap {
-	return &Wrap{SugaredLogger: p.SugaredLogger.With(args...)}
+	return &Wrap{
+		SugaredLogger: p.SugaredLogger.With(args...),
+	}
 }

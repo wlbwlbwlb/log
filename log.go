@@ -26,7 +26,7 @@ func Logger() *zap.SugaredLogger {
 
 var opt Options
 
-func Init(name string, opts ...OptionFunc) (e error) {
+func Init(name string, opts ...OptionFunc) (logger *zap.SugaredLogger, e error) {
 	opt = Options{
 		Name: name,
 	}
@@ -70,10 +70,6 @@ func newEncoderConfig() zapcore.EncoderConfig {
 		EncodeDuration: zapcore.SecondsDurationEncoder,
 		EncodeCaller:   zapcore.ShortCallerEncoder,
 	}
-}
-
-func Sync() error {
-	return logger.Sync()
 }
 
 func Info(args ...interface{}) {
@@ -136,5 +132,7 @@ func With(args ...interface{}) *Wrap {
 	if nil == logger {
 		panic("init first")
 	}
-	return &Wrap{SugaredLogger: logger.With(args...)}
+	return &Wrap{
+		SugaredLogger: logger.With(args...),
+	}
 }
