@@ -136,5 +136,5 @@ func With(args ...interface{}) *Wrap {
 	if nil == logger {
 		panic("init first")
 	}
-	return &Wrap{logger: logger.With(args...)}
+	return &Wrap{SugaredLogger: logger.With(args...)}
 }

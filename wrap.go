@@ -3,41 +3,41 @@ package log
 import "go.uber.org/zap"
 
 type Wrap struct {
-	logger *zap.SugaredLogger
+	*zap.SugaredLogger
 }
 
 func (p *Wrap) Info(args ...interface{}) {
-	p.logger.Info(args...)
+	p.SugaredLogger.Info(args...)
 }
 
 func (p *Wrap) Warn(args ...interface{}) {
-	p.logger.Warn(args...)
+	p.SugaredLogger.Warn(args...)
 }
 
 func (p *Wrap) Error(args ...interface{}) {
-	p.logger.Error(args...)
+	p.SugaredLogger.Error(args...)
 }
 
 func (p *Wrap) Panic(args ...interface{}) {
-	p.logger.Panic(args...)
+	p.SugaredLogger.Panic(args...)
 }
 
 func (p *Wrap) Infof(template string, args ...interface{}) {
-	p.logger.Infof(template, args...)
+	p.SugaredLogger.Infof(template, args...)
 }
 
 func (p *Wrap) Warnf(template string, args ...interface{}) {
-	p.logger.Warnf(template, args...)
+	p.SugaredLogger.Warnf(template, args...)
 }
 
 func (p *Wrap) Errorf(template string, args ...interface{}) {
-	p.logger.Errorf(template, args...)
+	p.SugaredLogger.Errorf(template, args...)
 }
 
 func (p *Wrap) Panicf(template string, args ...interface{}) {
-	p.logger.Panicf(template, args...)
+	p.SugaredLogger.Panicf(template, args...)
 }
 
 func (p *Wrap) With(args ...interface{}) *Wrap {
-	return &Wrap{logger: p.logger.With(args...)}
+	return &Wrap{SugaredLogger: p.SugaredLogger.With(args...)}
 }
